@@ -1,4 +1,4 @@
-const express = require('express');
++const express = require('express');
 const bodyParser = require('body-parser');
 const { createClient } = require('@supabase/supabase-js');
 
@@ -21,7 +21,7 @@ app.post('/submit-crush', async (req, res) => {
 
   try {
     const { data, error } = await supabase
-      .from('your_table_name')
+      .from('crushes') // Menggunakan nama tabel 'crushes'
       .insert([{ your_name: yourName, crush_name: crushName }]);
 
     if (error) throw error;
