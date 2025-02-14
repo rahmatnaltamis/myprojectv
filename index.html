@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine</title>
+  <style>
+    body {
+      font-family: 'Great Vibes', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #ffd1dc;
+    }
+    .input-section {
+      display: block;
+      text-align: center;
+    }
+    .question-section {
+      display: none;
+      text-align: center;
+      border: 3px solid #ff69b4;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      background-color: #fff0f5;
+    }
+    input {
+      padding: 10px;
+      font-size: 1rem;
+      margin: 10px;
+      width: 80%;
+      max-width: 300px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background-color: white;
+      color: black;
+    }
+    img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="input-section" id="input-section">
+    <h2>Enter your name</h2>
+    <input type="text" id="your-name" placeholder="Your Name">
+    <h2>Enter your crush's name</h2>
+    <input type="text" id="crush-name" placeholder="Crush's Name">
+    <button onclick="startQuestionnaire()">Submit</button>
+  </div>
+
+  <div class="question-section" id="question-section">
+    <h2 id="question">Will you date with <span id="crush-placeholder"></span>?</h2>
+    <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZG01ZTlkZjJpNTJ0NHdkeHI5dzE0NTJlaTJtOWF1dDR1bnhvOHlkbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IqiumInk6n9vaONHp9/giphy.gif" alt="GIF" id="question-gif">
+    <div>
+      <button id="yes-button" onclick="handleYesClick()">Yes</button>
+      <button id="no-button" onclick="handleNoClick()">No</button>
+    </div>
+  </div>
+
+  <script>
+    let noButtonSizeMultiplier = 1;
+    let yesClickCount = 0;
+
+    function startQuestionnaire() {
+      const yourName = document.getElementById('your-name').value;
+      const crushName = document.getElementById('crush-name').value;
+
+      if (yourName && crushName) {
+        document.getElementById('input-section').style.display = 'none';
+        document.getElementById('question-section').style.display = 'block';
+        document.getElementById('crush-placeholder').textContent = crushName;
+      } else {
+        alert('Please enter both names.');
+      }
+    }
+    function handleYesClick() {
+      yesClickCount++;
+      const yesButton = document.getElementById('yes-button');
+      const noButton = document.getElementById('no-button');
+
+      if (yesClickCount === 1) {
+        yesButton.textContent = 'But he cannot cook...';
+        noButton.textContent = 'Please click me :()';
+      } else {
+        noButton.style.transform = `scale(${noButtonSizeMultiplier *= 1.2})`;
+      }
+
+      if (yesClickCount === 2) {
+        yesButton.textContent = 'but, why?';
+        noButton.textContent = 'youre mean :<)';
+      } else {
+        noButton.style.transform = `scale(${noButtonSizeMultiplier *= 1.3})`;
+      }
+      if (yesClickCount === 3) {
+        yesButton.textContent = 'you sure?';
+        noButton.textContent = 'please...🥺)';
+      } else {
+        noButton.style.transform = `scale(${noButtonSizeMultiplier *= 1.4})`;
+      }
+
+      if (yesClickCount >= 5) {
+        noButton.style.width = '100vw';
+        noButton.style.height = '100vh';
+      }
+    }
+
+
+    function handleNoClick() {
+      document.getElementById('question').textContent = 'I know you will push it';
+      document.getElementById('question-gif').src = 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3F3anQzNTV2eTF3NTk5MHN5MjhqZXhrN2k0NDlqbXFsYXA0a2JhZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/geEMiP0T1vchlR9Wje/giphy.gif';
+      document.getElementById('no-button').style.display = 'none';
+      document.getElementById('yes-button').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
